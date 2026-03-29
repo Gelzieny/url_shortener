@@ -86,12 +86,14 @@ Bearer SEU_TOKEN
 
 ### 🔗 URLs
 
-| Método | Endpoint         | Descrição   |
-| ------ | ---------------- | ----------- |
-| GET    | `/urls/`         | Listar URLs |
-| POST   | `/urls/`         | Criar URL   |
-| PUT    | `/urls/{url_id}` | Atualizar   |
-| DELETE | `/urls/{url_id}` | Deletar     |
+| Método | Endpoint               | Descrição                         |
+| ------ | ---------------------- | --------------------------------- |
+| GET    | `/urls/`               | Listar URLs do usuário            |
+| POST   | `/urls/`               | Criar URL encurtada               |
+| PUT    | `/urls/{url_id}`       | Atualizar URL                     |
+| DELETE | `/urls/{url_id}`       | Deletar URL                       |
+| GET    | `/urls/r/{short_code}` | 🔥 Redirecionar para URL original |
+
 
 ---
 
