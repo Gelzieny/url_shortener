@@ -176,7 +176,6 @@ uvicorn src.manage:app --reload
 
 ## 🔮 Próximas melhorias
 
-* 🔗 Redirecionamento `/r/{short_code}`
 * 📊 Contador de cliques
 * ⏳ Expiração automática
 * 🧑‍💼 Controle de roles (admin/user)
