@@ -138,7 +138,7 @@ SUPABASE_KEY=your_supabase_key
 <p align="justify">Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:</p>
 
 <a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=git,nodejs,vite,vscode" />
+  <img src="https://skillicons.dev/icons?i=git,python,vscode" />
 </a>
 
 
