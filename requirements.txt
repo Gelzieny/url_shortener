@@ -4,3 +4,6 @@ psutil
 pyjwt
 gunicorn
 uvicorn[standard]
+supabase
+python-dotenv
+pydantic[email]
