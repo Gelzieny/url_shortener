@@ -127,6 +127,7 @@ Bearer SEU_TOKEN
 ```env
 SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_key
+SUPABASE_SERVICE_KEY=your_supabase_service_key
 ```
 
 ---

@@ -1,20 +1,20 @@
 import random
 import string
-
-from src.dependencias.supabase_client import SUPABASE_URL, SUPABASE_KEY
-from supabase import create_client, ClientOptions
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.responses import RedirectResponse
 from fastapi import APIRouter, Depends, HTTPException
-from src.dependencias.supabase_client import supabase
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+
 from src.schemas.url import URLCreate
+from src.dependencias.supabase_client import *
+from supabase import create_client, ClientOptions
 from src.dependencias.auth_dependency import get_current_user
+from src.dependencias.supabase_client import SUPABASE_URL, SUPABASE_KEY
 
 urls_router = APIRouter(prefix="/urls", tags=["URLs"])
 
 
 def generate_short_code(length=6):
   return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
-
 
 @urls_router.get("/")
 def get_urls(user=Depends(get_current_user), credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):
@@ -61,8 +61,6 @@ def create_url(data: URLCreate, user=Depends(get_current_user), credentials: HTT
   }).execute()
 
   return response.data
-
-
 
 @urls_router.put("/{url_id}")
 def update_url(
@@ -123,3 +121,18 @@ def delete_url(
     raise HTTPException(status_code=404, detail="URL não encontrada")
 
   return {"message": "Deletado com sucesso"}
+
+@urls_router.get("/r/{short_code}")
+def redirect_url(short_code: str):
+  response = supabase_public.table("urls") \
+    .select("*") \
+    .eq("short_code", short_code) \
+    .eq("is_active", True) \
+    .execute()
+
+  if not response.data:
+    raise HTTPException(status_code=404, detail="URL não encontrada")
+
+  url_data = response.data[0]
+
+  return RedirectResponse(url=url_data["original_url"])
