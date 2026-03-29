@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
+from src.routes.url import urls_router
 from src.routes.auth import  auth_router
 
 app = FastAPI(
@@ -10,6 +11,7 @@ app = FastAPI(
 )
 
 app.include_router(auth_router)
+app.include_router(urls_router)
 
 # --- Rota de Redirecionamento da Raiz para a Documentação ---
 @app.get("/", include_in_schema=False)
